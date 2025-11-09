@@ -1,0 +1,48 @@
+{
+    "mcpServers": {
+        "chrome-devtools": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "chrome-devtools-mcp@latest"
+            ]
+        },
+        "codex": {
+            "type": "stdio",
+            "command": "codex",
+            "args": [
+                "mcp"
+            ]
+        },
+        "context7": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp"
+            ]
+        },
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "@playwright/mcp@latest"
+            ]
+        },
+        "serena": {
+            "command": "uvx",
+            "args": [
+                "--from",
+                "git+https://github.com/oraios/serena",
+                "serena",
+                "start-mcp-server"
+            ]
+        },
+        "vibe_kanban": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "vibe-kanban@latest",
+                "--mcp"
+            ]
+        }
+    }
+}

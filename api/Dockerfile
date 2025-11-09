@@ -1,4 +1,4 @@
-FROM ruby:3.3.0
+FROM ruby:3.3.0-slim
 
 # Install dependencies
 RUN apt-get update -qq && \

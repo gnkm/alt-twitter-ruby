@@ -4,34 +4,37 @@
 
 ---
 
-## Phase 1: Docker環境構築
+## Phase 1: Docker環境構築 ✅
 
-### 1.1 プロジェクト初期化
-- [ ] `.gitignore` の整備
-- [ ] `docker-compose.yml` 作成（4サービス: frontend, api, db, redis）
-- [ ] Rails用 `Dockerfile` 作成
-- [ ] Next.js用 `Dockerfile` 作成
+### 1.1 プロジェクト初期化 ✅
+- [x] `.gitignore` の整備
+- [x] `docker-compose.yml` 作成（4サービス: frontend, api, db, redis）
+- [x] Rails用 `Dockerfile` 作成（Ruby 3.3.6）
+- [x] Next.js用 `Dockerfile` 作成
 
-### 1.2 Rails API初期化
-- [ ] `rails new api --api --database=mysql --skip-test` 実行
-- [ ] `database.yml` をDocker MySQL用に設定
-- [ ] Redis gem追加（`redis`, `redis-rails`）
-- [ ] CORS設定（`rack-cors`）
-- [ ] RSpec + FactoryBot + DatabaseCleaner セットアップ
+### 1.2 Rails API初期化 ✅
+- [x] `rails new api --api --database=mysql --skip-test` 実行
+- [x] `database.yml` をDocker MySQL用に設定
+- [x] Redis gem追加（`redis`, `redis-rails`）
+- [x] CORS設定（`rack-cors`）
+- [x] RSpec + FactoryBot + DatabaseCleaner セットアップ
 
-### 1.3 Next.js初期化
-- [ ] `npx create-next-app@latest frontend --typescript --tailwind --app`
-- [ ] shadcn/ui初期化（`npx shadcn@latest init`）
-- [ ] Vitest + React Testing Library セットアップ
-- [ ] `vitest.config.ts` 作成
-- [ ] 環境変数設定（`.env.local`）
+### 1.3 Next.js初期化 ✅
+- [x] `npx create-next-app@latest frontend --typescript --tailwind --app`
+- [x] shadcn/ui初期化（`npx shadcn@latest init`）
+- [x] Vitest + React Testing Library セットアップ
+- [x] `vitest.config.ts` 作成
+- [x] 環境変数設定（`.env.local`）
 
-### 1.4 動作確認
-- [ ] `docker-compose up` で全サービス起動確認
-- [ ] Rails: `http://localhost:3001` アクセス確認
-- [ ] Next.js: `http://localhost:3000` アクセス確認
-- [ ] MySQL接続確認
-- [ ] Redis接続確認
+### 1.4 動作確認 ✅
+- [x] `docker-compose up` で全サービス起動確認
+- [x] Rails: `http://localhost:3001` アクセス確認（Ruby 3.3.6 + Rails 8.1.1）
+- [x] Next.js: `http://localhost:3000` アクセス確認
+- [x] MySQL接続確認（twitter_clone_development, twitter_clone_test作成済み）
+- [x] Redis接続確認（PONG応答確認）
+
+**完了日**: 2025-11-09
+**備考**: Rubyバージョンを3.3.0から3.3.6に更新してRails 8.1.1との互換性問題を解決
 
 ---
 

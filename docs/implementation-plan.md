@@ -38,65 +38,68 @@
 
 ---
 
-## Phase 2: Rails APIバックエンド実装（TDD）
+## Phase 2: Rails APIバックエンド実装（TDD） ✅
 
-### 2.1 Postモデル（TDD）
+### 2.1 Postモデル（TDD） ✅
 
 **Red**: テストを書く
-- [ ] `spec/models/post_spec.rb` 作成
+- [x] `spec/models/post_spec.rb` 作成
   - bodyのバリデーション（presence, length: maximum 140）
   - author_nameのデフォルト値（"guest"）
   - created_atでの降順ソート
 
 **Green**: 実装
-- [ ] `rails g model Post body:text author_name:string`
-- [ ] マイグレーション修正（`add_index :posts, :created_at`）
-- [ ] `rails db:migrate`
-- [ ] `app/models/post.rb` にバリデーション追加
+- [x] `rails g model Post body:text author_name:string`
+- [x] マイグレーション修正（`add_index :posts, :created_at`）
+- [x] `rails db:migrate`
+- [x] `app/models/post.rb` にバリデーション追加
 
 **Refactor**: 改善
-- [ ] FactoryBot設定（`spec/factories/posts.rb`）
-- [ ] テスト整理
+- [x] FactoryBot設定（`spec/factories/posts.rb`）
+- [x] テスト整理
 
-### 2.2 PostsController（TDD）
+### 2.2 PostsController（TDD） ✅
 
 **Red**: テストを書く
-- [ ] `spec/requests/api/posts_spec.rb` 作成
+- [x] `spec/requests/api/posts_spec.rb` 作成
   - `POST /api/posts` の正常系・異常系
   - `GET /api/posts` の一覧取得
   - limitパラメータのテスト
 
 **Green**: 実装
-- [ ] `rails g controller Api::Posts --skip-routes`
-- [ ] `config/routes.rb` にAPIルート追加
-- [ ] `create` アクション実装
-- [ ] `index` アクション実装
+- [x] `rails g controller Api::Posts --skip-routes`
+- [x] `config/routes.rb` にAPIルート追加
+- [x] `create` アクション実装
+- [x] `index` アクション実装
 
 **Refactor**: 改善
-- [ ] エラーハンドリング整理
-- [ ] Strong Parametersの確認
+- [x] エラーハンドリング整理
+- [x] Strong Parametersの確認
 
-### 2.3 Redisキャッシュ層（TDD）
+### 2.3 Redisキャッシュ層（TDD） ✅
 
 **Red**: テストを書く
-- [ ] `spec/services/post_cache_service_spec.rb` 作成
+- [x] `spec/services/post_cache_service_spec.rb` 作成
   - `cache_post(post)` で `LPUSH tl:global`
   - `LTRIM tl:global 0 49` で50件制限
   - `get_cached_ids(limit)` でID取得
 
 **Green**: 実装
-- [ ] `app/services/post_cache_service.rb` 作成
-- [ ] `PostsController#create` でキャッシュ更新
-- [ ] `PostsController#index` でキャッシュ読み込み
+- [x] `app/services/post_cache_service.rb` 作成
+- [x] `PostsController#create` でキャッシュ更新
+- [x] `PostsController#index` でキャッシュ読み込み
 
 **Refactor**: 改善
-- [ ] キャッシュミス時のDB補完ロジック
-- [ ] Redis接続エラーハンドリング
+- [x] キャッシュミス時のDB補完ロジック
+- [x] Redis接続エラーハンドリング
 
-### 2.4 統合テスト
-- [ ] `spec/requests/api/posts_spec.rb` で全フローテスト
+### 2.4 統合テスト ✅
+- [x] `spec/requests/api/posts_spec.rb` で全フローテスト
   - 投稿作成 → Redis確認 → 一覧取得の流れ
-- [ ] エラーケースの網羅（422, 500）
+- [x] エラーケースの網羅（422, 500）
+
+**完了日**: 2025-11-09
+**備考**: TDDサイクルでPost モデル、PostsController、PostCacheServiceを実装完了
 
 ---
 
@@ -194,11 +197,11 @@
 - [ ] Redisキャッシュヒット率の確認
 
 ### 4.2 ドキュメント整備
-- [ ] README.md 更新
+- [x] README.md 更新
   - セットアップ手順
   - 起動方法
   - テスト実行方法
-- [ ] API仕様書の確認（specs.md）
+- [x] API仕様書の確認（specs.md）
 
 ### 4.3 最終チェック
 - [ ] 全RSpecテストがパス

@@ -8,8 +8,12 @@ module Api
       post = Post.new(post_params)
 
       if post.save
-        # Cache the new post
-        cache_service.cache_post(post)
+        # Cache the new post (silently fail if Redis is down)
+        begin
+          cache_service.cache_post(post)
+        rescue => e
+          Rails.logger.error("Failed to cache post: #{e.message}")
+        end
 
         render json: post, status: :created
       else

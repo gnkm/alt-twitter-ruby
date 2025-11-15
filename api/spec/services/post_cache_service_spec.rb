@@ -55,13 +55,17 @@ RSpec.describe PostCacheService, type: :service do
 
   describe '#get_cached_ids' do
     it 'retrieves the specified number of post IDs from cache' do
-      posts = (1..10).map { create(:post) }.reverse
+      posts = []
+      10.times { posts << create(:post) }
+
+      # Cache all posts (lpush adds to front, so last post added is first in list)
       posts.each { |post| service.cache_post(post) }
 
       cached_ids = service.get_cached_ids(5)
 
       expect(cached_ids.length).to eq(5)
-      expect(cached_ids).to eq(posts[0..4].map(&:id))
+      # Should return the most recently cached 5 posts (in reverse order of creation)
+      expect(cached_ids).to eq(posts.reverse[0..4].map(&:id))
     end
 
     it 'returns an empty array when cache is empty' do
@@ -71,17 +75,24 @@ RSpec.describe PostCacheService, type: :service do
     end
 
     it 'returns all available IDs when fewer than limit exist' do
-      posts = (1..3).map { create(:post) }.reverse
+      posts = []
+      3.times { posts << create(:post) }
+
+      # Cache all posts
       posts.each { |post| service.cache_post(post) }
 
       cached_ids = service.get_cached_ids(10)
 
       expect(cached_ids.length).to eq(3)
-      expect(cached_ids).to eq(posts.map(&:id))
+      # Should return IDs in order they were cached (newest first)
+      expect(cached_ids).to eq(posts.reverse.map(&:id))
     end
 
     it 'defaults to 50 when no limit is specified' do
-      posts = (1..60).map { create(:post) }.reverse
+      posts = []
+      60.times { posts << create(:post) }
+
+      # Cache all posts
       posts.each { |post| service.cache_post(post) }
 
       cached_ids = service.get_cached_ids

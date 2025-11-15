@@ -1,5 +1,6 @@
 module Api
   class PostsController < ApplicationController
+
     DEFAULT_LIMIT = 50
 
     # POST /api/posts
